@@ -1,0 +1,32 @@
+{
+        "ruleList": {
+                "code": "LeaveApplicationRuleList",
+                "name": "Leave Application Rules",
+                "beanType": "genie.leaveapplication.dataobject.LeaveApplication",
+                "ruleType": "validation",
+                "rules": [
+                        {
+                                "name": "LAR0001-ValidateBackupUser",
+                                "classPath": "genie.leaveapplication.rules.validation.BackupValidation",
+                        },
+                        {
+                                "name": "LAR0002-validate deployment day",
+                                "classPath": "genie.leaveapplication.rules.validation.DeployDataValidation",
+                                "childRules": [
+                                                {
+                                                        "name": "LAR0002.1-WARNING message for deploy day",
+                                                        "classPath": "genie.leaveapplication.rules.validation.WarningDepDay"
+                                                },
+                                                {
+                                                        "name": "LAR0002.2-informManager",
+                                                        "classPath": "genie.leaveapplication.rules.validation.InformManager"
+                                                }
+                                        ]
+                        },
+                        {
+                                "name": "LAR0003 - Notify Backup user",
+                                "classPath": "genie.leaveapplication.rules.validation.BackupUserNotification"
+                        }
+                ]
+        }
+}
